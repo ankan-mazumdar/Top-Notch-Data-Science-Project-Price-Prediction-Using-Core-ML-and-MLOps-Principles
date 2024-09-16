@@ -8,7 +8,7 @@ This project focuses on implementing both core ML techniques and MLOps principle
 This project aims to build an end-to-end machine learning pipeline for house price prediction, incorporating both core ML techniques and MLOps principles. The project differentiates itself by focusing not just on building a model but on implementing advanced MLOps practices, making it robust, scalable, and production-ready.
 
 ## Key Components
-### Core ML: We focus on data understanding, assumption testing, and algorithm verification to ensure the data fits the model.
+### Core ML: ### We focus on data understanding, assumption testing, and algorithm verification to ensure the data fits the model.
 ### MLOps: The project integrates CI/CD pipelines, model deployment, and experiment tracking using tools like MLFlow and ZenML.
 ### Code Quality: Following design patterns (Factory, Strategy, Template) to ensure high-quality, maintainable code.
 
