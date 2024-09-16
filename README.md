@@ -5,7 +5,31 @@
 **"Building a Top-Notch Data Science Project: House Price Prediction Using Core ML and MLOps Principles"**
 
 This project focuses on implementing both core ML techniques and MLOps principles for building an advanced, production-ready machine learning pipeline for house price prediction.
+This project aims to build an end-to-end machine learning pipeline for house price prediction, incorporating both core ML techniques and MLOps principles. The project differentiates itself by focusing not just on building a model but on implementing advanced MLOps practices, making it robust, scalable, and production-ready.
 
+## Key Components
+### Core ML: We focus on data understanding, assumption testing, and algorithm verification to ensure the data fits the model.
+### MLOps: The project integrates CI/CD pipelines, model deployment, and experiment tracking using tools like MLFlow and ZenML.
+### Code Quality: Following design patterns (Factory, Strategy, Template) to ensure high-quality, maintainable code.
+
+## Project Structure
+The project is divided into several stages, including:
+
+### Data Ingestion: The data is sourced from Kaggle and includes a variety of house features. Ingestion is handled using a Factory Design Pattern to ensure flexibility in reading different data formats.
+### Exploratory Data Analysis (EDA): A comprehensive analysis of the dataset, including univariate and bivariate analysis to identify key features and relationships.
+### Modeling: A single algorithm is employed to build the predictive model, with suggestions to try additional models as part of an assignment.
+### Experiment Tracking and Deployment: Using MLFlow and ZenML, experiments are tracked and models are deployed to production environments, following CI/CD pipelines.
+### Code Quality: Design patterns are used throughout the code to improve readability, scalability, and maintainability.
+
+## Tools & Libraries
+ZenML: For orchestrating machine learning workflows.
+MLFlow: For tracking experiments and deploying models.
+Seaborn: For visualizations during EDA.
+Pandas & NumPy: For data manipulation and analysis.
+Design Patterns
+Factory Design Pattern: Used for data ingestion.
+Strategy Design Pattern: Applied in various steps like handling missing values and performing EDA.
+Template Design Pattern: Utilized to standardize the analysis pipeline.
 ---
 
 ## Step-by-Step Workflow
