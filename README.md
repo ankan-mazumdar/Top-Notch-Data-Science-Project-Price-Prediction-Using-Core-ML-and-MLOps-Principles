@@ -9,16 +9,22 @@ This project aims to build an end-to-end machine learning pipeline for house pri
 
 ## Key Components
 __Core ML__: We focus on data understanding, assumption testing, and algorithm verification to ensure the data fits the model.
+
 __MLOps__: The project integrates CI/CD pipelines, model deployment, and experiment tracking using tools like MLFlow and ZenML.
+
 __Code Quality__: Following design patterns (Factory, Strategy, Template) to ensure high-quality, maintainable code.
 
 ## Project Structure
 The project is divided into several stages, including:
 
 __Data Ingestion__: The data is sourced from Kaggle and includes a variety of house features. Ingestion is handled using a Factory Design Pattern to ensure flexibility in reading different data formats.
+
 __Exploratory Data Analysis (EDA)__: A comprehensive analysis of the dataset, including univariate and bivariate analysis to identify key features and relationships.
+
 __Modeling__: A single algorithm is employed to build the predictive model, with suggestions to try additional models as part of an assignment.
+
 __Experiment Tracking and Deployment__: Using MLFlow and ZenML, experiments are tracked and models are deployed to production environments, following CI/CD pipelines.
+
 __Code Quality__: Design patterns are used throughout the code to improve readability, scalability, and maintainability.
 
 ## Tools & Libraries
