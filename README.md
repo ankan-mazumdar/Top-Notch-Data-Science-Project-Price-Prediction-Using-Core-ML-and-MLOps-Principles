@@ -21,6 +21,7 @@ This project demonstrates the combined use of core ML techniques and MLOps princ
 
 ---
 ## Why Understanding and validating data are crucial in data science and machine learning
+Note, we will implement a single model for this project, however we should be testing it with different models to test in future.
 - Many people focus only on training and evaluating the model, without understanding the underlying data
 - It's important to maintain a robust model over time and to continually improve it with deeper insights from the data
 - Plan includes project structure, data sources, model deployment, and design patterns like strategy, template, and factory.
