@@ -20,7 +20,7 @@ This project demonstrates the combined use of core ML techniques and MLOps princ
 - **Adoption of Design Patterns**: Uses design patterns (Factory, Strategy, Template) across modules, making code scalable, modular, and easier to maintain.
 <img width="237" alt="Screenshot 2024-10-28 at 4 23 43 AM" src="https://github.com/user-attachments/assets/e034e1e2-147f-4e75-9906-886212345b35">
 
-<img width="237" alt="Screenshot 2024-10-28 at 4 23 43 AM" src="https://github.com/user-attachments/assets/05d855c5-8c4a-4416-8a7b-3d650af965df">
+![image](https://github.com/user-attachments/assets/5d649b5c-943f-4236-a13e-d3a176c50b15)
 
 
 - ![image](https://github.com/user-attachments/assets/fece55de-7385-464a-920f-9334b4889789)
