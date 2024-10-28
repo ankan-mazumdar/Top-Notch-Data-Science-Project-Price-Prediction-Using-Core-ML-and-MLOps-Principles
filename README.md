@@ -12,7 +12,8 @@ This project demonstrates the combined use of core ML techniques and MLOps princ
 - **Model Compatibility**: Data validation and assumption checks are integrated to ensure the chosen model performs effectively on the dataset.
 
 ### MLOps
-- **Comprehensive MLOps Framework**: Integrates tools like ZenML and MLFlow for a production-ready ML pipeline.
+- **Comprehensive MLOps Framework**: Integrates tools
+-  ZenML (easy to use orchestrated MLOps framework seamlessly integrating other ML tools/workflows to build fullstack of it, relatively easy to understand, we understand the pipelins workflows) and MLFlow (inegration of ZenML where we use to track our deployments for a production-ready ML pipeline.
 - **Pipeline Automation**: CI/CD pipelines automate the flow from data ingestion through deployment, enhancing reproducibility and robustness.
 
 ### Code Quality
