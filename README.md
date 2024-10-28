@@ -20,7 +20,128 @@ This project demonstrates the combined use of core ML techniques and MLOps princ
 - **Adoption of Design Patterns**: Uses design patterns (Factory, Strategy, Template) across modules, making code scalable, modular, and easier to maintain.
 
 ---
+## Why Understanding and validating data are crucial in data science and machine learning
+- Many people focus only on training and evaluating the model, without understanding the underlying data
+- It's important to maintain a robust model over time and to continually improve it with deeper insights from the data
+- Plan includes project structure, data sources, model deployment, and design patterns like strategy, template, and factory.
+- Utilize design patterns like Factory design pattern for code reproducibility and scalability
+- Understanding the factory pattern in AI projects
+- The factory pattern involves creating a class with a preparation stage for different products like coffee types
+- It helps in creating different product instances and calling preparation methods for each product
+- Integrating CI/CD pipelines and using MLflow for experiment tracking and ZenML for orchestration
+- Implementing the ingest method for data processing
+- The ingest method takes the file path as input and returns a data frame.
+- Adding type checks and docstrings for clarity and readability of the code.
+- Handling non-zip files and extracting data from a zip file
+- Professionals verify file type before extraction for error handling
+- Using the zip file library to extract data and ensure presence of CSV files
+- Using abstract classes for data ingestion
+- Abstract classes can be extended to handle specific data formats like JSON.
+- Automating the process of determining file extensions for data ingestion.
+- Understanding Strategy Pattern in E-commerce Application Development
+- Strategy pattern allows for different payment methods in e-commerce apps while keeping the payment process consistent.
+- By creating a strategy interface and multiple implementations, developers can handle various payment gateways efficiently.
+- Creating scalable data analysis using Analyze Source and EDA
+- Implementing various analysis techniques like data inspection, missing value analysis, and multivariate analysis
+- Utilizing Analyze Source for logic implementation and EDA for data visualization
 
+- Creating an abstract data inspection strategy
+- The basics of data inspection involve inspecting the data frame
+- The abstract base class defines a common interface for data inspection subclasses
+
+- Executing data inspection strategy
+- Setting the strategy and executing it by calling the 'do_inspect' method on the data frame.
+- Utilizing summary statistics inspection strategy without reinstantiating the data inspector.
+
+- Exploring and understanding dataset insights
+- Ability to view and explore numerical and categorical columns with detailed summary statistics
+- Insights on numerical features such as target variable sale price with mean and standard deviation
+
+- Data inspection reveals outliers, missing values, and skewness
+- Need to analyze distribution of sale price and other numeric features
+- Important to handle outliers and missing values for better algorithm performance
+
+Teaching about template design patterns and missing value analysis.
+- Template design pattern is used frequently in sessions and is compared to different cuisines having their own sequence of courses.
+- The missing value analysis will be covered in the upcoming sessions.
+
+Creating a template for missing value analysis
+- The abstract class defines a plan for identifying and visualizing missing values
+- Concrete class implements methods to identify and visualize missing values in a data frame
+
+ Creating a heat map using Seaborn library in Python.
+- Utilize Seaborn to create a heat map for analyzing correlations and value analysis.
+- Data frame with Boolean values to indicate missing values when creating the heat map.
+
+Understanding missing data distribution
+- There are two types of missing data distribution - randomly distributed and structured missingness.
+- Structured missingness may indicate a nonrandom pattern, which could suggest a data collection issue or non-applicability of features.
+
+Data preprocessing steps for regression analysis
+- Outliers handling and categorical encoding are crucial
+- Feature engineering involving combining related features and transforming skewed data is necessary
+
+Visualizing Target variable with kernel density estimate and histogram bins
+- Kernel density estimate creates a smooth version of histogram to better estimate data distribution.
+- The number of bins in the histogram affects the granularity and level of detail in the visualization.
+- 
+- Exploring how to analyze and interpret relationships between numerical features
+- Implementing numerical versus numerical analysis to visualize relationships
+
+- The module enforces any subclass to implement the handle method for handling missing values
+- Two strategies are discussed - dropping missing values and filling missing values using various methods such as mean, median, mode, or constant values
+
+ Handling missing values in data processing using various strategies.
+- Mean, median, mode, or constant values used to fill missing numeric data depending on the method chosen.
+- Context class created to delegate the task of handling missing values with the flexibility to switch between strategies.
+
+ Running a machine learning pipeline with various steps
+- The process involves handling warnings and initiating a new run for the ML pipeline.
+- The pipeline includes steps such as handling missing values, feature engineering, outlier detection, and model training and evaluation.
+
+Feature engineering and outlier detection are important for data normalization.
+- Feature engineering involves defining strategies for applying transformations to skewed features in the data.
+- Outlier detection can help in reducing skewness in the data by applying appropriate transformations.
+
+ Explaining feature engineering and strategy application
+- Using one hot encoding in feature engineering
+- Applying lock transformation, scaling, and one hot encoding in the training Pipeline
+
+Implement zcore outlier detection method
+- Zcore outlier detection is a statistical method using standard deviation to identify outliers in a data set.
+- Zcore of zero indicates data point is at the mean, zcore of one indicates one standard deviation above the mean.
+
+Explanation of handling outliers using strategies like removing and capping
+- Capping changes outlier values to nearest non-outlier data point
+- Set upper and lower bounds to handle outliers effectively
+
+Importance of Model Building in AI Project
+- Data splitting is essential to check the model performance.
+- Feature engineering involves strategies like logging and standard scaling.
+
+Importance of Model Building in AI Project
+- Data splitting is essential to check the model performance.
+- Feature engineering involves strategies like logging and standard scaling.
+
+ Model building involves importing libraries and setting up configurations.
+- Linear regression pipeline is imported from scikit-learn, including the regressor mixin.
+- Abstract and concrete classes are created for model building strategies, utilizing pandas data frames for training.
+ Implementing standard scaler for feature scaling
+- Standard scaler ensures zero mean and unit variance for features.
+- Using standard scaling in the pipeline for optimal model training and prediction.
+
+Setting up the ML flow stack for the project.
+- Default orchestrator, experiment tracker, ml4 tracker, model deploy, ml flow prices, and artifact store should be set.
+- Imported ml flow, pandas, and regressor mixing for indicating the output.
+
+Explanation of pipeline creation in AI project
+- Pipeline named 'price predictor' used to transform and scale data
+- Model artifact created for training and prediction using categorical and numerical columns
+
+Understanding input required by the model after processing
+- Logging the column that the model expects is helpful for understanding the input required by the model after processing, especially when using one hot encoding.
+- Tracking and comparing different experiments with feature transformations is essential and can be achieved by extracting every run.
+ 
 ## Detailed Project Structure
 
 ### Data Loading & Ingestion
