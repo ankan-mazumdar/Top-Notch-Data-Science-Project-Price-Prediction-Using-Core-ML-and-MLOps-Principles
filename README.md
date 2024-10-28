@@ -25,6 +25,8 @@ This project demonstrates the combined use of core ML techniques and MLOps princ
 
 - ![image](https://github.com/user-attachments/assets/fece55de-7385-464a-920f-9334b4889789)
 
+![image](https://github.com/user-attachments/assets/7bd7597b-820a-411f-afba-5a1dd68bd14c)
+
 
 ---
 ## Why Understanding and validating data are crucial in data science and machine learning
