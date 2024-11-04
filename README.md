@@ -27,7 +27,19 @@ This project demonstrates the combined use of core ML techniques and MLOps princ
 
 
 ![image](https://github.com/user-attachments/assets/7bd7597b-820a-411f-afba-5a1dd68bd14c)
-
+Template Pattern
+Real-World Analogy:
+Imagine you run a restaurant with a set menu for different cuisines. Each cuisine (like Italian,
+Chinese, or Indian) has a specific sequence of courses: appetizer, main course, dessert, and
+beverage. The sequence of serving these courses is the same, but the dishes served at each step
+vary depending on the cuisine.
+For example, in an Italian meal, the appetizer might be bruschetta, the main course could be pasta
+dessert might be tiramisu, and the beverage could be a glass of wine. In a Chinese meal, the
+appetizer could be spring rolls, the main course might be stir-fried noodles, dessert could be
+fortune cookies, and the beverage could be tea.
+The template here is the overall dining sequence: appetizer, main course, dessert, and beverage.
+The customizable steps are the specific dishes served at each stage, which change based on the
+cuisine.
 
 ---
 ## Why Understanding and validating data are crucial in data science and machine learning
