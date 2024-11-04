@@ -224,7 +224,12 @@ Understanding input required by the model after processing
 
 - **ZenML**: Orchestrates MLOps pipelines, improving the management and scalability of machine learning workflows.
 - **MLFlow**: Tracks experiments and manages model deployment, essential for production-level tracking and deployment consistency.
+
+  
 - **Julius AI**: Assists in EDA, providing quick insights, visualizations, and supporting in-depth data analysis.
+  
+- ![image](https://github.com/user-attachments/assets/74780c25-1bff-4819-a781-b6373eed5c9a)
+
 - **Pandas & NumPy**: Core libraries for data manipulation.
 - **Seaborn**: Used for visualizations during EDA, especially for correlation analysis and missing value heatmaps.
 
