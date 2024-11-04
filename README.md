@@ -23,7 +23,8 @@ This project demonstrates the combined use of core ML techniques and MLOps princ
 ![image](https://github.com/user-attachments/assets/5d649b5c-943f-4236-a13e-d3a176c50b15)
 
 
-- ![image](https://github.com/user-attachments/assets/fece55de-7385-464a-920f-9334b4889789)
+![image](https://github.com/user-attachments/assets/fece55de-7385-464a-920f-9334b4889789)
+
 
 ![image](https://github.com/user-attachments/assets/7bd7597b-820a-411f-afba-5a1dd68bd14c)
 
