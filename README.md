@@ -20,14 +20,27 @@ This project demonstrates the combined use of core ML techniques and MLOps princ
 - **Adoption of Design Patterns**: Uses design patterns (Factory, Strategy, Template) across modules, making code scalable, modular, and easier to maintain.
 <img width="237" alt="Screenshot 2024-10-28 at 4 23 43 AM" src="https://github.com/user-attachments/assets/e034e1e2-147f-4e75-9906-886212345b35">
 
-![image](https://github.com/user-attachments/assets/5d649b5c-943f-4236-a13e-d3a176c50b15)
+Factory Design Pattern
 
+Imagine you run a coffee shop. Customers can order different types of coffee, but the process of
+making coffee follows a similar pattern. You have a general coffee-making machine (the factory)
+that can be used to make different types of coffee (products) like Espresso, Latte, or Cappuccino.
+CoffeeMachine (Factory): Has a method to make coffee
+• Espresso, Latte, Cappuccino (ConcreteProducts): Different types of coffee that can be
+made by the machine.
 
-![image](https://github.com/user-attachments/assets/fece55de-7385-464a-920f-9334b4889789)
+Strategy Pattern
 
+Imagine you're developing an e-commerce application. Customers can choose different payment
+methods like Credit Card, PayPal, or Bitcoin. Each payment method has a different implementation,
+but the overall process is the same: the customer pays for the order.
+• PaymentMethod (Strategy): An interface that defines how payments are processed.
+• CreditCardPayment, PayPalPayment, BitcoinPayment (ConcreteStrategies): Different
+implementations of payment processing.
+• ShoppingCart (Context): Uses a payment method to process a customer's payment.
 
-![image](https://github.com/user-attachments/assets/7bd7597b-820a-411f-afba-5a1dd68bd14c)
 Template Pattern
+
 Real-World Analogy:
 Imagine you run a restaurant with a set menu for different cuisines. Each cuisine (like Italian,
 Chinese, or Indian) has a specific sequence of courses: appetizer, main course, dessert, and
