@@ -229,6 +229,9 @@ Understanding input required by the model after processing
 
   ![image](https://github.com/user-attachments/assets/a120c16e-4733-4154-8d5a-62063a8f9efd)
 
+  ![image](https://github.com/user-attachments/assets/fa7ce889-b0f8-48ca-afb1-54bfb447ea29)
+
+
 - **MLFlow**: Tracks experiments and manages model deployment, essential for production-level tracking and deployment consistency.
 
   ![image](https://github.com/user-attachments/assets/5c3b1cbc-2148-4829-be64-074941bfcbec)
