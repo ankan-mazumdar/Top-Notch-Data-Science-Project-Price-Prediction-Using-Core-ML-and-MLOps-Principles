@@ -14,6 +14,9 @@ This project demonstrates the combined use of core ML techniques and MLOps princ
 ### MLOps
 - **Comprehensive MLOps Framework**: Integrates tools
 -  ZenML (easy to use orchestrated MLOps framework seamlessly integrating other ML tools/workflows to build fullstack of it, relatively easy to understand, we understand the pipelins workflows) and MLFlow (inegration of ZenML where we use to track our deployments for a production-ready ML pipeline.
+
+  ![image](https://github.com/user-attachments/assets/fd9e9c9c-49d3-47c9-ae42-31b2a8109b71)
+
 - **Pipeline Automation**: CI/CD pipelines automate the flow from data ingestion through deployment, enhancing reproducibility and robustness.
 
 ### Code Quality
@@ -223,9 +226,13 @@ Understanding input required by the model after processing
 ## Tools & Libraries
 
 - **ZenML**: Orchestrates MLOps pipelines, improving the management and scalability of machine learning workflows.
+
+  ![image](https://github.com/user-attachments/assets/a120c16e-4733-4154-8d5a-62063a8f9efd)
+
 - **MLFlow**: Tracks experiments and manages model deployment, essential for production-level tracking and deployment consistency.
 
-  
+  ![image](https://github.com/user-attachments/assets/5c3b1cbc-2148-4829-be64-074941bfcbec)
+
 - **Julius AI**: Assists in EDA, providing quick insights, visualizations, and supporting in-depth data analysis.
   
 - ![image](https://github.com/user-attachments/assets/74780c25-1bff-4819-a781-b6373eed5c9a)
