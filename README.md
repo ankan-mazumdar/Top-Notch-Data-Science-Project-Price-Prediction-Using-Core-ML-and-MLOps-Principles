@@ -194,6 +194,9 @@ Understanding input required by the model after processing
 ### Exploratory Data Analysis (EDA)
 - **Why Julius AI**: Julius AI is incorporated for fast, thorough data analysis, quick insights, and visualizations, significantly reducing the time spent on manual EDA. It supports interactive data visualizations and quick experimentation, allowing for a more insightful and streamlined approach to data exploration.
 - **How It’s Better**: Compared to traditional manual EDA, Julius AI saves considerable time and effort by automating many exploratory steps. It includes community suggestions and pre-built workflows that aid in feature selection, multivariate analysis, and identifying relationships between variables, thus creating a solid foundation for model-building decisions.
+
+- ![image](https://github.com/user-attachments/assets/c8daa82f-75e6-40a7-a7b1-268895b99d09)
+
 - **EDA Strategy Pattern**: The Strategy pattern allows easy switching between various data inspection strategies, such as summary statistics, missing value analysis, and multivariate relationships. By defining these strategies as separate modules, EDA becomes modular and easily extendable.
   - **Scalability**: This structure ensures EDA steps are reusable, well-organized, and easily adaptable to new datasets or analysis needs.
 - **Other Options & Comparison**: Performing EDA manually in a Jupyter notebook can work for smaller projects but is labor-intensive and error-prone for larger datasets. Julius AI, paired with the Strategy pattern, offers a faster, structured, and replicable alternative.
@@ -202,6 +205,9 @@ Understanding input required by the model after processing
 - **Why Template Design Pattern**: To manage missing values effectively, a Template pattern is used to create reusable structures for missing value analysis. This approach standardizes handling processes, making it easier to spot missing patterns and structure preprocessing steps accordingly.
   - **Seaborn Heatmaps**: Heatmaps are used to visualize missing data distributions, with structured and random missingness guiding preprocessing decisions.
 - **Outlier Detection & Normalization**: Outliers are detected using the Z-score method, which is a statistical approach that flags data points significantly deviating from the mean. This method is reliable for identifying unusual values in continuous data and supports decision-making in feature engineering.
+
+  ![image](https://github.com/user-attachments/assets/bb42d223-7021-405f-9d56-70552db3067c)
+
 - **How It’s Better**:
   - **Template Pattern Benefits**: By setting a base class for missing value analysis, handling missing data becomes modular, adaptable, and standardized, which is particularly useful for larger, complex datasets.
   - **Automated Z-Score Analysis**: Compared to manual outlier checks, Z-score automates and simplifies the identification of outliers, ensuring that skewed values are treated consistently.
