@@ -262,12 +262,10 @@ Understanding input required by the model after processing
    ```bash
    pip install -r requirements.txt
    ```
-3. 
-
-Here's the content formatted as a README.md:
+3. **ZenML and MLflow Setup Guide
 
 ```markdown
-# ZenML and MLflow Setup Guide
+
 
 This guide provides step-by-step instructions for setting up ZenML with MLflow integration.
 
@@ -437,7 +435,7 @@ rm mlflow.db
    - Ensure MLflow is properly installed
    - Check if MLflow server is running
    - Verify artifact store is properly configured
-```
+
 4. **Run Data Ingestion**:
    ```bash
    python ingest_data.py
