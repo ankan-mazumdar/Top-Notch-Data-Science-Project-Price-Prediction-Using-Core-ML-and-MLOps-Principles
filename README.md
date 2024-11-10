@@ -262,18 +262,194 @@ Understanding input required by the model after processing
    ```bash
    pip install -r requirements.txt
    ```
-3. **Run Data Ingestion**:
+3. 
+
+Here's the content formatted as a README.md:
+
+```markdown
+# ZenML and MLflow Setup Guide
+
+This guide provides step-by-step instructions for setting up ZenML with MLflow integration.
+
+## Table of Contents
+- [Installation](#installation)
+- [Basic Setup](#basic-setup)
+- [Component Registration](#component-registration)
+- [Stack Configuration](#stack-configuration)
+- [Verification](#verification)
+- [Troubleshooting](#troubleshooting)
+- [Best Practices](#best-practices)
+- [Advanced Configuration](#advanced-configuration)
+- [Clean Up](#clean-up)
+
+## Installation
+
+```bash
+# Install required packages
+pip install zenml
+pip install mlflow>=2.1.1
+```
+
+## Basic Setup
+
+Initialize ZenML repository:
+```bash
+zenml init
+```
+
+Check current environment:
+```bash
+# List all components to see what's already registered
+zenml artifact-store list
+zenml orchestrator list
+zenml experiment-tracker list
+zenml stack list
+```
+
+## Component Registration
+
+Register required components:
+```bash
+# Register local artifact store
+zenml artifact-store register local_store --flavor=local
+
+# Register local orchestrator
+zenml orchestrator register local_orchestrator --flavor=local
+
+# Register MLflow experiment tracker
+zenml experiment-tracker register mlflow --flavor=mlflow
+```
+
+## Stack Configuration
+
+Create and set up MLflow stack:
+```bash
+# Register the stack with components
+zenml stack register mlflow_stack \
+    -a local_store \
+    -o local_orchestrator \
+    -e mlflow
+
+# Set as active stack
+zenml stack set mlflow_stack
+```
+
+## Verification
+
+Verify the setup:
+```bash
+# Check registered stacks
+zenml stack list
+
+# Start MLflow UI (optional)
+zenml up
+```
+
+## Troubleshooting
+
+### Component Already Exists
+```bash
+# Delete existing components if needed
+zenml artifact-store delete local_store
+zenml orchestrator delete local_orchestrator
+zenml experiment-tracker delete mlflow
+```
+
+### Check Component Details
+```bash
+zenml artifact-store describe local_store
+zenml orchestrator describe local_orchestrator
+zenml experiment-tracker describe mlflow
+```
+
+### Stack Issues
+```bash
+# Check stack configuration
+zenml stack describe mlflow_stack
+
+# Delete and recreate if needed
+zenml stack delete mlflow_stack
+```
+
+## Best Practices
+
+1. **Before Starting:**
+   - Clean up any existing configurations if starting fresh
+   - Check all required packages are installed
+   - Verify you're in the correct directory
+
+2. **During Setup:**
+   - Register components one at a time
+   - Verify each component after registration
+   - Use descriptive names for components and stacks
+
+3. **After Setup:**
+   - Verify stack activation
+   - Test MLflow tracking
+   - Check MLflow UI accessibility
+
+## Advanced Configuration
+
+### Custom MLflow Configuration
+```bash
+# Configure MLflow with specific tracking URI
+zenml experiment-tracker register mlflow \
+    --flavor=mlflow \
+    --tracking_uri=sqlite:///mlflow.db
+```
+
+### Custom Artifact Store Path
+```bash
+# Configure local artifact store with specific path
+zenml artifact-store register local_store \
+    --flavor=local \
+    --path=/custom/path/to/artifacts
+```
+
+## Clean Up
+
+Remove all configurations:
+```bash
+# Delete stack and components
+zenml stack delete mlflow_stack
+zenml artifact-store delete local_store
+zenml orchestrator delete local_orchestrator
+zenml experiment-tracker delete mlflow
+
+# Clean MLflow artifacts
+rm -rf mlruns/
+rm mlflow.db
+```
+
+## Common Issues and Solutions
+
+1. **Component Registration Fails:**
+   - Ensure you have the correct permissions
+   - Check if component already exists
+   - Verify the flavor is supported
+
+2. **Stack Registration Fails:**
+   - Ensure all components are registered first
+   - Check component names are correct
+   - Verify all required components are specified
+
+3. **MLflow Integration Issues:**
+   - Ensure MLflow is properly installed
+   - Check if MLflow server is running
+   - Verify artifact store is properly configured
+```
+4. **Run Data Ingestion**:
    ```bash
    python ingest_data.py
    ```
-4. **Run EDA**:
+5. **Run EDA**:
    ```bash
    jupyter notebook eda.ipynb
    ```
-5. **Train and Evaluate the Model**:
+6. **Train and Evaluate the Model**:
    ```bash
    python train_model.py
    ```
-6. **Track Experiments and Deploy**:
+7. **Track Experiments and Deploy**:
    MLFlow is used for managing experiments and deploying the trained model into production.
 
