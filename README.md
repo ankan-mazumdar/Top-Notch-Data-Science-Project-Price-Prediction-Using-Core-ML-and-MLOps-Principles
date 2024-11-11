@@ -4,15 +4,12 @@
 
   ![image](https://github.com/user-attachments/assets/c301c0bf-d337-42aa-a16e-aa36b836a504)
 
-  ![image](https://github.com/user-attachments/assets/74efd001-c3ea-49bf-856b-fa07c7fb3775)
-  
-  ![image](https://github.com/user-attachments/assets/d043038e-6406-43a8-9466-438a31d0f03e)
+<img width="1396" alt="Screenshot 2024-11-11 at 12 21 40 AM" src="https://github.com/user-attachments/assets/16af9842-1b45-43ba-b623-d4f4a8e65d9b">
+<img width="712" alt="Screenshot 2024-11-11 at 12 21 52 AM" src="https://github.com/user-attachments/assets/f1e03242-de7c-4a93-9ee2-44c1cf3e825f">
+<img width="1440" alt="Screenshot 2024-11-11 at 12 22 00 AM" src="https://github.com/user-attachments/assets/5cebecba-d688-4a27-9c85-428f9198f62d">
 
-  ![image](https://github.com/user-attachments/assets/999ae3ed-f877-4dec-927c-389190e0d70b)
+  <img width="1413" alt="Screenshot 2024-11-11 at 12 20 55 AM" src="https://github.com/user-attachments/assets/d9fd3692-9a31-43f4-8908-b1b6a04eb886">
 
-  ![image](https://github.com/user-attachments/assets/873908e4-e10e-40b5-bd98-7a72dd85b576)
-
-  ![image](https://github.com/user-attachments/assets/be9ddcfe-d54b-42ac-beb7-1354801cc20a)
 
 ## Summary
 **"Building a Top-Notch Data Science Project: House Price Prediction Using Core ML and MLOps Principles"**
