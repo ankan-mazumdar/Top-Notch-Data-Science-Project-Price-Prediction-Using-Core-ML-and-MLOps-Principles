@@ -65,7 +65,7 @@ Based on the provided code, here's the architectural overview of the MLOps proje
 ## 1. Core Components
 
 ### Base Architecture
-```mermaid
+```
 graph TD
     A[Data Pipeline] --> B[Feature Engineering]
     B --> C[Model Training]
@@ -113,7 +113,7 @@ class DataSplittingStrategy(ABC):
 ## 2. Pipeline Architecture
 
 ### Training Pipeline Flow
-```mermaid
+```
 graph LR
     A[Data Ingestion] --> B[Missing Values]
     B --> C[Feature Engineering]
@@ -186,7 +186,7 @@ def ml_pipeline():
 ## 3. Experiment Tracking Integration
 
 ### MLflow Integration
-```mermaid
+```
 graph TD
     A[Pipeline Run] --> B[MLflow Tracker]
     B --> C[Metrics Logging]
@@ -241,92 +241,7 @@ class MLFlowExperimentTracker(BaseExperimentTracker):
 ```
 
 
-### Alternative Trackers
-- **Wandb Support**
-
-```44:82:.venv/lib/python3.9/site-packages/zenml/integrations/wandb/experiment_trackers/wandb_experiment_tracker.py
-class WandbExperimentTracker(BaseExperimentTracker):
-    """Track experiment using Wandb."""
-
-    @property
-    def config(self) -> WandbExperimentTrackerConfig:
-        """Returns the `WandbExperimentTrackerConfig` config.
-
-        Returns:
-            The configuration.
-        """
-        return cast(WandbExperimentTrackerConfig, self._config)
-
-    @property
-    def settings_class(self) -> Type[WandbExperimentTrackerSettings]:
-        """Settings class for the Wandb experiment tracker.
-
-        Returns:
-            The settings class.
-        """
-        return WandbExperimentTrackerSettings
-
-    def prepare_step_run(self, info: "StepRunInfo") -> None:
-        """Configures a Wandb run.
-
-        Args:
-            info: Info about the step that will be executed.
-        """
-        os.environ[WANDB_API_KEY] = self.config.api_key
-        settings = cast(
-            WandbExperimentTrackerSettings, self.get_settings(info)
-        )
-        tags = settings.tags + [info.run_name, info.pipeline.name]
-        wandb_run_name = (
-            settings.run_name or f"{info.run_name}_{info.pipeline_step_name}"
-        )
-        self._initialize_wandb(
-            run_name=wandb_run_name, tags=tags, settings=settings.settings
-        )
-
 ```
-
-- **Comet Support**
-
-```42:80:.venv/lib/python3.9/site-packages/zenml/integrations/comet/experiment_trackers/comet_experiment_tracker.py
-class CometExperimentTracker(BaseExperimentTracker):
-    """Track experiment using Comet."""
-
-    @property
-    def config(self) -> CometExperimentTrackerConfig:
-        """Returns the `CometExperimentTrackerConfig` config.
-
-        Returns:
-            The configuration.
-        """
-        return cast(CometExperimentTrackerConfig, self._config)
-
-    @property
-    def settings_class(self) -> Type[CometExperimentTrackerSettings]:
-        """Settings class for the Comet experiment tracker.
-
-        Returns:
-            The settings class.
-        """
-        return CometExperimentTrackerSettings
-
-    def prepare_step_run(self, info: "StepRunInfo") -> None:
-        """Configures a Comet experiment.
-
-        Args:
-            info: Info about the step that will be executed.
-        """
-        os.environ[COMET_API_KEY] = self.config.api_key
-        settings = cast(
-            CometExperimentTrackerSettings, self.get_settings(info)
-        )
-        tags = settings.tags + [info.run_name, info.pipeline.name]
-        comet_exp_name = (
-            settings.run_name or f"{info.run_name}_{info.pipeline_step_name}"
-        )
-        self._initialize_comet(
-            run_name=comet_exp_name, tags=tags, settings=settings.settings
-        )
 
 ```
 
