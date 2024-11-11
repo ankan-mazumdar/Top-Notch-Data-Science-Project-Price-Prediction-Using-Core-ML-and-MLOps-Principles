@@ -470,8 +470,181 @@ rm mlflow.db
    - Verify artifact store is properly configured
 
 
-7. **Track Experiments and Deploy**:
-   ZenML and MLFlow is used for managing experiments and deploying the trained model into production.
+```markdown
+# House Price Prediction Pipeline
+
+This project implements a machine learning pipeline for predicting house prices using ZenML and MLflow.
+
+## Setup and Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd <repository-name>
+```
+
+2. Install dependencies:
+```bash
+pip install "zenml[server]" mlflow scikit-learn pandas numpy
+```
+
+3. Set up environment (for Mac users):
+```bash
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+```
+
+## Running the Pipeline
+
+1. Initialize ZenML:
+```bash
+zenml init
+```
+
+2. Start the ZenML server:
+```bash
+zenml up
+```
+
+3. Run the pipeline:
+```bash
+python run_pipeline.py
+
+(base) ankanmazumdar@Ankans-Air Top-Notch-Data-Science-Project-Price-Prediction-Using-Core-ML-and-MLOps-Principles-main % python run_pipeline.py
+Using existing zip file: data/AmesHousing.csv.zip
+Pipeline execution completed
+Initiating a new run for the pipeline: ml_pipeline.
+Using user: default
+Using stack: mlflow_stack
+  artifact_store: local_store
+  experiment_tracker: mlflow
+  orchestrator: local_orchestrator
+Dashboard URL for Pipeline Run: http://127.0.0.1:8237/runs/4bbd1876-1cc8-4416-b8ed-51ba96bf2cee
+Created new model version 11 for model prices_predictor.
+Models can be viewed in the dashboard using ZenML Pro. Sign up for a free trial at https://www.zenml.io/pro/
+Using cached version of step data_ingestion_step.
+Using cached version of step handle_missing_values_step.
+Using cached version of step feature_engineering_step.
+Using cached version of step outlier_detection_step.
+Using cached version of step data_splitter_step.
+Step model_building_step has started.
+Categorical columns: []
+Numerical columns: ['Order', 'PID', 'MS SubClass', 'Lot Frontage', 'Lot Area', 'Overall Qual', 'Overall Cond', 'Year Built', 'Year Remod/Add', 'Mas Vnr Area', 'BsmtFin SF 1', 'BsmtFin SF 2', 'Bsmt Unf SF', 'Total Bsmt SF', '1st Flr SF', '2nd Flr SF', 'Low Qual Fin SF', 'Gr Liv Area', 'Bsmt Full Bath', 'Bsmt Half Bath', 'Full Bath', 'Half Bath', 'Bedroom AbvGr', 'Kitchen AbvGr', 'TotRms AbvGrd', 'Fireplaces', 'Garage Yr Blt', 'Garage Cars', 'Garage Area', 'Wood Deck SF', 'Open Porch SF', 'Enclosed Porch', '3Ssn Porch', 'Screen Porch', 'Pool Area', 'Misc Val', 'Mo Sold', 'Yr Sold']
+Building and training the Linear Regression model.
+2024/11/11 00:42:22 WARNING mlflow.utils.autologging_utils: MLflow autologging encountered a warning: "/opt/anaconda3/lib/python3.12/site-packages/mlflow/types/utils.py:407: UserWarning: Hint: Inferred schema contains integer column(s). Integer columns in Python cannot represent missing values. If your input data contains missing values at inference time, it will be encoded as floats and will cause a schema enforcement error. The best way to avoid this problem is to infer the model schema based on a realistic data sample (training dataset) that includes missing values. Alternatively, you can declare integer columns as doubles (float64) whenever these columns may have missing values. See `Handling Integers With Missing Values <https://www.mlflow.org/docs/latest/models.html#handling-integers-with-missing-values>`_ for more details."
+2024/11/11 00:42:22 WARNING mlflow.utils.autologging_utils: MLflow autologging encountered a warning: "/opt/anaconda3/lib/python3.12/site-packages/mlflow/types/utils.py:407: UserWarning: Hint: Inferred schema contains integer column(s). Integer columns in Python cannot represent missing values. If your input data contains missing values at inference time, it will be encoded as floats and will cause a schema enforcement error. The best way to avoid this problem is to infer the model schema based on a realistic data sample (training dataset) that includes missing values. Alternatively, you can declare integer columns as doubles (float64) whenever these columns may have missing values. See `Handling Integers With Missing Values <https://www.mlflow.org/docs/latest/models.html#handling-integers-with-missing-values>`_ for more details."
+Model training completed.
+Model expects the following columns: ['Order', 'PID', 'MS SubClass', 'Lot Frontage', 'Lot Area', 'Overall Qual', 'Overall Cond', 'Year Built', 'Year Remod/Add', 'Mas Vnr Area', 'BsmtFin SF 1', 'BsmtFin SF 2', 'Bsmt Unf SF', 'Total Bsmt SF', '1st Flr SF', '2nd Flr SF', 'Low Qual Fin SF', 'Gr Liv Area', 'Bsmt Full Bath', 'Bsmt Half Bath', 'Full Bath', 'Half Bath', 'Bedroom AbvGr', 'Kitchen AbvGr', 'TotRms AbvGrd', 'Fireplaces', 'Garage Yr Blt', 'Garage Cars', 'Garage Area', 'Wood Deck SF', 'Open Porch SF', 'Enclosed Porch', '3Ssn Porch', 'Screen Porch', 'Pool Area', 'Misc Val', 'Mo Sold', 'Yr Sold']
+/opt/anaconda3/lib/python3.12/site-packages/zenml/integrations/mlflow/experiment_trackers/mlflow_experiment_tracker.py:258: FutureWarning: ``mlflow.gluon.autolog`` is deprecated since 2.5.0. This method will be removed in a future release.
+  module.autolog(disable=True)
+Step model_building_step has finished in 12.696s.
+Step model_evaluator_step has started.
+Applying the same preprocessing to the test data.
+Evaluating the model using the selected strategy.
+Predicting using the trained model.
+Calculating evaluation metrics.
+Model Evaluation Metrics: {'Mean Squared Error': 0.010942367022909556, 'R-Squared': 0.9221139768594211}
+Step model_evaluator_step has finished in 3.803s.
+Pipeline run has finished in 17.841s.
+
+MLflow Tracking URI: file:/Users/ankanmazumdar/Library/Application Support/zenml/local_stores/52bad07c-54cc-4ee6-b969-e7904b2144a5/mlruns
+To start MLflow UI, run:
+mlflow ui --backend-store-uri 'file:/Users/ankanmazumdar/Library/Application Support/zenml/local_stores/52bad07c-54cc-4ee6-b969-e7904b2144a5/mlruns'
+
+ZenML Dashboard:
+1. First run: zenml up
+2. Then visit: http://127.0.0.1:8237
+3. Default username is 'default' (no password needed)
+
+Pipeline Run ID: 4bbd1876-1cc8-4416-b8ed-51ba96bf2cee
+Status: completed
+Start Time: 2024-11-11 06:42:16.597017
+
+```
+
+### Example Output:
+```bash
+Using existing zip file: data/AmesHousing.csv.zip
+Pipeline execution completed
+Initiating a new run for the pipeline: ml_pipeline.
+Using user: default
+Using stack: mlflow_stack
+  artifact_store: local_store
+  experiment_tracker: mlflow
+  orchestrator: local_orchestrator
+Dashboard URL for Pipeline Run: http://127.0.0.1:8237/runs/4bbd1876-1cc8-4416-b8ed-51ba96bf2cee
+
+[... Model Training Output ...]
+
+Model Evaluation Metrics: {
+    'Mean Squared Error': 0.010942367022909556, 
+    'R-Squared': 0.9221139768594211
+}
+
+Pipeline run has finished in 17.841s.
+```
+
+## Accessing the Dashboards
+
+### MLflow Dashboard
+1. Start MLflow UI:
+```bash
+mlflow ui --backend-store-uri 'file:/path/to/mlruns'
+```
+2. Visit: http://127.0.0.1:5000
+
+### ZenML Dashboard
+1. Ensure ZenML server is running
+2. Visit: http://127.0.0.1:8237
+3. Login:
+   - Username: `default`
+   - Password: (leave empty)
+
+## Pipeline Steps
+1. Data Ingestion
+2. Missing Value Handling
+3. Feature Engineering
+4. Outlier Detection
+5. Data Splitting
+6. Model Building
+7. Model Evaluation
+
+## Performance Metrics
+- Mean Squared Error: 0.0109
+- R-Squared Score: 0.9221 (92.21% variance explained)
+
+## Notes
+- The pipeline uses caching for efficiency
+- Model artifacts are tracked using MLflow
+- Pipeline orchestration is handled by ZenML
+- The model achieves 92.21% accuracy on the test set
+
+## Troubleshooting
+If you encounter issues:
+1. Ensure all dependencies are installed
+2. For Mac users, set the environment variable
+3. Check ZenML server status with `zenml status`
+4. Verify MLflow tracking URI is correct
+
+## Additional Commands
+```bash
+# Check ZenML status
+zenml status
+
+# List all pipelines
+zenml pipeline list
+
+# List all runs
+zenml pipeline runs list
+
+# Stop ZenML server
+zenml down
+```
+
+For more information, visit:
+- [ZenML Documentation](https://docs.zenml.io)
+- [MLflow Documentation](https://mlflow.org/docs/latest/index.html)
+```
+
 
 
 
