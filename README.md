@@ -32,10 +32,7 @@
 
 ```markdown
 # House Price Prediction with MLOps
-```
-![ZenML Dashboard](https://github.com/user-attachments/assets/a28156c0-7703-40a7-b0b6-a4acde54b54d)
-![MLflow Integration](https://github.com/user-attachments/assets/c301c0bf-d337-42aa-a16e-aa36b836a504)
-```
+
 ## Table of Contents
 1. [Project Overview](#project-overview)
 2. [Architecture](#architecture)
