@@ -58,6 +58,317 @@ A production-grade house price prediction system implementing MLOps principles a
 ## Architecture
 ![MLOps Architecture](https://github.com/user-attachments/assets/fd9e9c9c-49d3-47c9-ae42-31b2a8109b71)
 
+Based on the provided code, here's the architectural overview of the MLOps project:
+
+# MLOps Project Architecture
+
+## 1. Core Components
+
+### Base Architecture
+```mermaid
+graph TD
+    A[Data Pipeline] --> B[Feature Engineering]
+    B --> C[Model Training]
+    C --> D[Model Evaluation]
+    D --> E[Experiment Tracking]
+```
+
+### Design Patterns Implementation
+
+#### Strategy Pattern
+- **Feature Engineering**
+
+```164:198:src/feature_engineering.py
+        return df_transformed
+```
+
+- Allows swapping different feature engineering approaches
+- Implementations include: LogTransformation, StandardScaling, MinMaxScaling, OneHotEncoding
+
+#### Abstract Factory Pattern
+- **Data Splitting**
+
+```11:27:src/data_splitter.py
+# -----------------------------------------------
+# This class defines a common interface for different data splitting strategies.
+# Subclasses must implement the split_data method.
+class DataSplittingStrategy(ABC):
+    @abstractmethod
+    def split_data(self, df: pd.DataFrame, target_column: str):
+        """
+        Abstract method to split the data into training and testing sets.
+
+        Parameters:
+        df (pd.DataFrame): The input DataFrame to be split.
+        target_column (str): The name of the target column.
+
+        Returns:
+        X_train, X_test, y_train, y_test: The training and testing splits for features and target.
+        """
+        pass
+```
+
+- Provides interface for creating families of data splitting strategies
+
+## 2. Pipeline Architecture
+
+### Training Pipeline Flow
+```mermaid
+graph LR
+    A[Data Ingestion] --> B[Missing Values]
+    B --> C[Feature Engineering]
+    C --> D[Outlier Detection]
+    D --> E[Data Splitting]
+    E --> F[Model Building]
+    F --> G[Model Evaluation]
+```
+
+Reference Implementation:
+
+```14:68:pipelines/training_pipeline.py
+...
+@pipeline(
+    model=Model(
+        # The name uniquely identifies this model
+        name="prices_predictor"
+    ),
+    enable_cache=True
+)
+def ml_pipeline():
+    """Define an end-to-end machine learning pipeline."""
+
+    try:
+        # Find zip files in the data directory
+        zip_files = glob.glob("data/*.zip")
+        
+        if not zip_files:
+            # If no zip file found, check if CSV exists in extracted_data
+            if os.path.exists("extracted_data/AmesHousing.csv"):
+                print("No zip file found, but using existing CSV in extracted_data/")
+                # Create data directory if it doesn't exist
+                os.makedirs("data", exist_ok=True)
+                # Create zip file from existing CSV
+                shutil.make_archive("data/AmesHousing", 'zip', "extracted_data", "AmesHousing.csv")
+                file_path = "data/AmesHousing.zip"
+            else:
+                raise FileNotFoundError("Neither zip file nor CSV file found. Please ensure data is available.")
+        else:
+            file_path = zip_files[0]
+            print(f"Using existing zip file: {file_path}")
+
+        # Data Ingestion Step
+        raw_data = data_ingestion_step(file_path=file_path)
+
+        # Handling Missing Values Step
+        filled_data = handle_missing_values_step(raw_data)
+@pipeline(
+    model=Model(
+        # The name uniquely identifies this model
+        name="prices_predictor"
+    ),
+    enable_cache=True
+)
+def ml_pipeline():
+        ...
+        # Feature Engineering Step
+        engineered_data = feature_engineering_step(
+            filled_data, strategy="log", features=["Gr Liv Area", "SalePrice"]
+        )
+
+        # Outlier Detection Step
+        clean_data = outlier_detection_step(engineered_data, column_name="SalePrice")
+
+        # Data Splitting Step
+        X_train, X_test, y_train, y_test = data_splitter_step(clean_data, target_column="SalePrice")
+```
+
+
+## 3. Experiment Tracking Integration
+
+### MLflow Integration
+```mermaid
+graph TD
+    A[Pipeline Run] --> B[MLflow Tracker]
+    B --> C[Metrics Logging]
+    B --> D[Parameter Logging]
+    B --> E[Artifact Storage]
+```
+
+Implementation:
+
+```63:103:.venv/lib/python3.9/site-packages/zenml/integrations/mlflow/experiment_trackers/mlflow_experiment_tracker.py
+class MLFlowExperimentTracker(BaseExperimentTracker):
+    """Track experiments using MLflow."""
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        """Initialize the experiment tracker and validate the tracking uri.
+
+        Args:
+            *args: Variable length argument list.
+            **kwargs: Arbitrary keyword arguments.
+        """
+        super().__init__(*args, **kwargs)
+        self._ensure_valid_tracking_uri()
+
+    def _ensure_valid_tracking_uri(self) -> None:
+        """Ensures that the tracking uri is a valid mlflow tracking uri.
+
+        Raises:
+            ValueError: If the tracking uri is not valid.
+        """
+        tracking_uri = self.config.tracking_uri
+        if tracking_uri:
+            valid_schemes = DATABASE_ENGINES + ["http", "https", "file"]
+            if not any(
+                tracking_uri.startswith(scheme) for scheme in valid_schemes
+            ) and not is_databricks_tracking_uri(tracking_uri):
+                raise ValueError(
+                    f"MLflow tracking uri does not start with one of the valid "
+                    f"schemes {valid_schemes} or its value is not set to "
+                    f"'databricks'. See "
+                    f"https://www.mlflow.org/docs/latest/tracking.html#where-runs-are-recorded "
+                    f"for more information."
+                )
+
+    @property
+    def config(self) -> MLFlowExperimentTrackerConfig:
+        """Returns the `MLFlowExperimentTrackerConfig` config.
+
+        Returns:
+            The configuration.
+        """
+        return cast(MLFlowExperimentTrackerConfig, self._config)
+```
+
+
+### Alternative Trackers
+- **Wandb Support**
+
+```44:82:.venv/lib/python3.9/site-packages/zenml/integrations/wandb/experiment_trackers/wandb_experiment_tracker.py
+class WandbExperimentTracker(BaseExperimentTracker):
+    """Track experiment using Wandb."""
+
+    @property
+    def config(self) -> WandbExperimentTrackerConfig:
+        """Returns the `WandbExperimentTrackerConfig` config.
+
+        Returns:
+            The configuration.
+        """
+        return cast(WandbExperimentTrackerConfig, self._config)
+
+    @property
+    def settings_class(self) -> Type[WandbExperimentTrackerSettings]:
+        """Settings class for the Wandb experiment tracker.
+
+        Returns:
+            The settings class.
+        """
+        return WandbExperimentTrackerSettings
+
+    def prepare_step_run(self, info: "StepRunInfo") -> None:
+        """Configures a Wandb run.
+
+        Args:
+            info: Info about the step that will be executed.
+        """
+        os.environ[WANDB_API_KEY] = self.config.api_key
+        settings = cast(
+            WandbExperimentTrackerSettings, self.get_settings(info)
+        )
+        tags = settings.tags + [info.run_name, info.pipeline.name]
+        wandb_run_name = (
+            settings.run_name or f"{info.run_name}_{info.pipeline_step_name}"
+        )
+        self._initialize_wandb(
+            run_name=wandb_run_name, tags=tags, settings=settings.settings
+        )
+
+```
+
+- **Comet Support**
+
+```42:80:.venv/lib/python3.9/site-packages/zenml/integrations/comet/experiment_trackers/comet_experiment_tracker.py
+class CometExperimentTracker(BaseExperimentTracker):
+    """Track experiment using Comet."""
+
+    @property
+    def config(self) -> CometExperimentTrackerConfig:
+        """Returns the `CometExperimentTrackerConfig` config.
+
+        Returns:
+            The configuration.
+        """
+        return cast(CometExperimentTrackerConfig, self._config)
+
+    @property
+    def settings_class(self) -> Type[CometExperimentTrackerSettings]:
+        """Settings class for the Comet experiment tracker.
+
+        Returns:
+            The settings class.
+        """
+        return CometExperimentTrackerSettings
+
+    def prepare_step_run(self, info: "StepRunInfo") -> None:
+        """Configures a Comet experiment.
+
+        Args:
+            info: Info about the step that will be executed.
+        """
+        os.environ[COMET_API_KEY] = self.config.api_key
+        settings = cast(
+            CometExperimentTrackerSettings, self.get_settings(info)
+        )
+        tags = settings.tags + [info.run_name, info.pipeline.name]
+        comet_exp_name = (
+            settings.run_name or f"{info.run_name}_{info.pipeline_step_name}"
+        )
+        self._initialize_comet(
+            run_name=comet_exp_name, tags=tags, settings=settings.settings
+        )
+
+```
+
+
+## 4. Component Interactions
+
+```mermaid
+graph TD
+    A[Pipeline Orchestrator] --> B[Feature Engineering]
+    A --> C[Model Training]
+    A --> D[Experiment Tracking]
+    B --> E[Data Transformations]
+    C --> F[Model Artifacts]
+    D --> G[Metrics & Logs]
+```
+
+## 5. Key Features
+
+1. **Modularity**
+   - Interchangeable components via Strategy Pattern
+   - Pluggable experiment trackers
+
+2. **Extensibility**
+   - Abstract base classes for new implementations
+   - Support for multiple tracking platforms
+
+3. **Reproducibility**
+   - Tracked experiments
+   - Version controlled artifacts
+   - Configurable pipeline steps
+
+4. **Monitoring**
+   - Integrated logging
+   - Metric tracking
+   - Experiment comparison
+
+This architecture ensures:
+- Clean separation of concerns
+- Easy maintenance and testing
+- Flexible experiment tracking
+- Scalable pipeline operations
+
 ## Key Components
 
 ### Core ML Pipeline
