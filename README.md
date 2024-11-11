@@ -349,9 +349,6 @@ A production-grade house price prediction system implementing MLOps principles a
 
 ## Architecture
 
-Based on the provided code, here's the architectural overview of the MLOps project:
-
-# MLOps Project Architecture
 
 ## 1. Core Components
 
