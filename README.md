@@ -4,8 +4,10 @@
 
   ![image](https://github.com/user-attachments/assets/c301c0bf-d337-42aa-a16e-aa36b836a504)
 
+  <img width="1440" alt="Screenshot 2024-11-11 at 12 22 00 AM" src="https://github.com/user-attachments/assets/5cebecba-d688-4a27-9c85-428f9198f62d">
+
   <img width="712" alt="Screenshot 2024-11-11 at 12 21 52 AM" src="https://github.com/user-attachments/assets/f1e03242-de7c-4a93-9ee2-44c1cf3e825f">
-<img width="1440" alt="Screenshot 2024-11-11 at 12 22 00 AM" src="https://github.com/user-attachments/assets/5cebecba-d688-4a27-9c85-428f9198f62d">
+
 
 
 <img width="1396" alt="Screenshot 2024-11-11 at 12 21 40 AM" src="https://github.com/user-attachments/assets/16af9842-1b45-43ba-b623-d4f4a8e65d9b">
