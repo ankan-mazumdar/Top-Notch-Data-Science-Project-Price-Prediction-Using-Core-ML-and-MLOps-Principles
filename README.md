@@ -1,5 +1,19 @@
 # Top-Notch-Data-Science-Project-Price-Prediction-Using-Core-ML-and-MLOps-Principles
 
+  ![image](https://github.com/user-attachments/assets/a28156c0-7703-40a7-b0b6-a4acde54b54d)
+
+  ![image](https://github.com/user-attachments/assets/c301c0bf-d337-42aa-a16e-aa36b836a504)
+
+  ![image](https://github.com/user-attachments/assets/74efd001-c3ea-49bf-856b-fa07c7fb3775)
+  
+  ![image](https://github.com/user-attachments/assets/d043038e-6406-43a8-9466-438a31d0f03e)
+
+  ![image](https://github.com/user-attachments/assets/999ae3ed-f877-4dec-927c-389190e0d70b)
+
+  ![image](https://github.com/user-attachments/assets/873908e4-e10e-40b5-bd98-7a72dd85b576)
+
+  ![image](https://github.com/user-attachments/assets/be9ddcfe-d54b-42ac-beb7-1354801cc20a)
+
 ## Summary
 **"Building a Top-Notch Data Science Project: House Price Prediction Using Core ML and MLOps Principles"**
 
@@ -452,9 +466,5 @@ rm mlflow.db
    MLFlow is used for managing experiments and deploying the trained model into production.
 
 
-  ![image](https://github.com/user-attachments/assets/a28156c0-7703-40a7-b0b6-a4acde54b54d)
 
-  ![image](https://github.com/user-attachments/assets/c301c0bf-d337-42aa-a16e-aa36b836a504)
-
- 
 
