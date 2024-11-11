@@ -31,6 +31,139 @@
  
 
 
+I'll help reorganize the README while maintaining all the valuable content and images. Here's a more structured version:
+
+```markdown
+# House Price Prediction with MLOps
+
+![ZenML Dashboard](https://github.com/user-attachments/assets/a28156c0-7703-40a7-b0b6-a4acde54b54d)
+![MLflow Integration](https://github.com/user-attachments/assets/c301c0bf-d337-42aa-a16e-aa36b836a504)
+
+## Table of Contents
+1. [Project Overview](#project-overview)
+2. [Architecture](#architecture)
+3. [Key Components](#key-components)
+4. [Setup & Installation](#setup--installation)
+5. [Pipeline Execution](#pipeline-execution)
+6. [Monitoring & Tracking](#monitoring--tracking)
+7. [Design Patterns](#design-patterns)
+8. [Performance](#performance)
+9. [Troubleshooting](#troubleshooting)
+
+## Project Overview
+A production-grade house price prediction system implementing MLOps principles and best practices. The project achieves 92.21% accuracy using a combination of robust data processing, model training, and deployment pipelines.
+
+### Dashboard Views
+<img width="812" alt="Model Training" src="https://github.com/user-attachments/assets/8e366fd8-297e-41ae-932e-8edb4f39ca53">
+<img width="1406" alt="Pipeline Overview" src="https://github.com/user-attachments/assets/197b46e0-74e1-43cb-8e8e-52c6bcd16f61">
+
+## Architecture
+![MLOps Architecture](https://github.com/user-attachments/assets/fd9e9c9c-49d3-47c9-ae42-31b2a8109b71)
+
+## Key Components
+
+### Core ML Pipeline
+```python:pipelines/training_pipeline.py
+startLine: 14
+endLine: 80
+```
+
+### Data Analysis
+Based on EDA findings:
+```python:analysis/EDA.ipynb
+startLine: 389
+endLine: 440
+```
+
+### MLOps Integration
+- **ZenML**: Orchestration framework
+- **MLflow**: Experiment tracking and model registry
+- **CI/CD**: Automated training and deployment pipelines
+
+## Setup & Installation
+
+### Prerequisites
+```bash
+pip install "zenml[server]" mlflow scikit-learn pandas numpy
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES  # For Mac users
+```
+
+### Pipeline Execution
+```bash
+zenml init
+zenml up
+python run_pipeline.py
+```
+
+## Design Patterns
+<img width="237" alt="Design Patterns" src="https://github.com/user-attachments/assets/e034e1e2-147f-4e75-9906-886212345b35">
+
+### Factory Pattern
+Used for data ingestion with configurable data sources:
+- **Concept**: Like a coffee machine producing different types of coffee
+- **Implementation**: Standardized data loading interface
+
+### Strategy Pattern
+Payment processing analogy:
+- **Interface**: PaymentMethod
+- **Implementations**: CreditCard, PayPal, Bitcoin
+- **Context**: ShoppingCart
+
+### Template Pattern
+Restaurant menu analogy:
+- **Template**: Dining sequence
+- **Customization**: Cuisine-specific dishes
+- **Implementation**: Data processing pipeline steps
+
+## Monitoring & Tracking
+
+### MLflow Dashboard
+```bash
+mlflow ui --backend-store-uri 'file:/path/to/mlruns'
+```
+Access at: http://127.0.0.1:5000
+
+### ZenML Dashboard
+- URL: http://127.0.0.1:8237
+- Credentials: username: `default`, no password
+
+### Performance Metrics
+- MSE: 0.0109
+- R² Score: 0.9221
+
+## Pipeline Steps
+1. Data Ingestion
+2. Missing Value Handling
+3. Feature Engineering
+4. Outlier Detection
+5. Data Splitting
+6. Model Building
+7. Model Evaluation
+
+## Troubleshooting
+
+### Common Issues
+1. ZenML Server:
+```bash
+zenml status
+zenml down  # Stop
+zenml up    # Restart
+```
+
+2. MLflow Connection:
+- Check tracking URI
+- Verify port availability
+
+### Useful Commands
+```bash
+zenml pipeline list
+zenml pipeline runs list
+```
+
+## Additional Resources
+- [ZenML Docs](https://docs.zenml.io)
+- [MLflow Docs](https://mlflow.org/docs/latest/index.html)
+```
 
 
 ## Summary
