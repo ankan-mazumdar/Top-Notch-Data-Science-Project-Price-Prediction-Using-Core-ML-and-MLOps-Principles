@@ -1,5 +1,367 @@
 # Top-Notch-Data-Science-Project-Price-Prediction-Using-Core-ML-and-MLOps-Principles
 
+
+## How to Run the Project
+### I will add further screenshots how the output looks post execution
+
+1. **Clone the Repository**:
+   ```bash
+   git clone <repo-link>
+   ```
+2. **Install Dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. **ZenML and MLflow Setup Guide
+
+```markdown
+
+
+This guide provides step-by-step instructions for setting up ZenML with MLflow integration.
+
+## Table of Contents
+- [Installation](#installation)
+- [Basic Setup](#basic-setup)
+- [Component Registration](#component-registration)
+- [Stack Configuration](#stack-configuration)
+- [Verification](#verification)
+- [Troubleshooting](#troubleshooting)
+- [Best Practices](#best-practices)
+- [Advanced Configuration](#advanced-configuration)
+- [Clean Up](#clean-up)
+```
+## Installation
+
+```bash
+# Install required packages
+pip install zenml
+pip install mlflow>=2.1.1
+```
+
+## Basic Setup
+
+Initialize ZenML repository:
+```bash
+zenml init
+```
+
+Check current environment:
+```bash
+# List all components to see what's already registered
+zenml artifact-store list
+zenml orchestrator list
+zenml experiment-tracker list
+zenml stack list
+```
+
+## Component Registration
+
+Register required components:
+```bash
+# Register local artifact store
+zenml artifact-store register local_store --flavor=local
+
+# Register local orchestrator
+zenml orchestrator register local_orchestrator --flavor=local
+
+# Register MLflow experiment tracker
+zenml experiment-tracker register mlflow --flavor=mlflow
+```
+
+## Stack Configuration
+
+Create and set up MLflow stack:
+```bash
+# Register the stack with components
+zenml stack register mlflow_stack \
+    -a local_store \
+    -o local_orchestrator \
+    -e mlflow
+
+# Set as active stack
+zenml stack set mlflow_stack
+```
+
+## Verification
+
+Verify the setup:
+```bash
+# Check registered stacks
+zenml stack list
+
+# Start MLflow UI (optional)
+zenml up
+```
+
+## Troubleshooting
+
+### Component Already Exists
+```bash
+# Delete existing components if needed
+zenml artifact-store delete local_store
+zenml orchestrator delete local_orchestrator
+zenml experiment-tracker delete mlflow
+```
+
+### Check Component Details
+```bash
+zenml artifact-store describe local_store
+zenml orchestrator describe local_orchestrator
+zenml experiment-tracker describe mlflow
+```
+
+### Stack Issues
+```bash
+# Check stack configuration
+zenml stack describe mlflow_stack
+
+# Delete and recreate if needed
+zenml stack delete mlflow_stack
+```
+
+## Best Practices
+
+1. **Before Starting:**
+   - Clean up any existing configurations if starting fresh
+   - Check all required packages are installed
+   - Verify you're in the correct directory
+
+2. **During Setup:**
+   - Register components one at a time
+   - Verify each component after registration
+   - Use descriptive names for components and stacks
+
+3. **After Setup:**
+   - Verify stack activation
+   - Test MLflow tracking
+   - Check MLflow UI accessibility
+
+## Advanced Configuration
+
+### Custom MLflow Configuration
+```bash
+# Configure MLflow with specific tracking URI
+zenml experiment-tracker register mlflow \
+    --flavor=mlflow \
+    --tracking_uri=sqlite:///mlflow.db
+```
+
+### Custom Artifact Store Path
+```bash
+# Configure local artifact store with specific path
+zenml artifact-store register local_store \
+    --flavor=local \
+    --path=/custom/path/to/artifacts
+```
+
+## Clean Up
+
+Remove all configurations:
+```bash
+# Delete stack and components
+zenml stack delete mlflow_stack
+zenml artifact-store delete local_store
+zenml orchestrator delete local_orchestrator
+zenml experiment-tracker delete mlflow
+
+# Clean MLflow artifacts
+rm -rf mlruns/
+rm mlflow.db
+```
+
+## Common Issues and Solutions
+
+1. **Component Registration Fails:**
+   - Ensure you have the correct permissions
+   - Check if component already exists
+   - Verify the flavor is supported
+
+2. **Stack Registration Fails:**
+   - Ensure all components are registered first
+   - Check component names are correct
+   - Verify all required components are specified
+
+3. **MLflow Integration Issues:**
+   - Ensure MLflow is properly installed
+   - Check if MLflow server is running
+   - Verify artifact store is properly configured
+
+
+```markdown
+# House Price Prediction Pipeline
+
+This project implements a machine learning pipeline for predicting house prices using ZenML and MLflow.
+
+## Setup and Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd <repository-name>
+```
+
+2. Install dependencies:
+```bash
+pip install "zenml[server]" mlflow scikit-learn pandas numpy
+```
+
+3. Set up environment (for Mac users):
+```bash
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+```
+
+## Running the Pipeline
+
+1. Initialize ZenML:
+```bash
+zenml init
+```
+
+2. Start the ZenML server:
+```bash
+zenml up
+```
+
+3. Run the pipeline:
+```bash
+python run_pipeline.py
+
+(base) ankanmazumdar@Ankans-Air Top-Notch-Data-Science-Project-Price-Prediction-Using-Core-ML-and-MLOps-Principles-main % python run_pipeline.py
+Using existing zip file: data/AmesHousing.csv.zip
+Pipeline execution completed
+Initiating a new run for the pipeline: ml_pipeline.
+Using user: default
+Using stack: mlflow_stack
+  artifact_store: local_store
+  experiment_tracker: mlflow
+  orchestrator: local_orchestrator
+Dashboard URL for Pipeline Run: http://127.0.0.1:8237/runs/4bbd1876-1cc8-4416-b8ed-51ba96bf2cee
+Created new model version 11 for model prices_predictor.
+Models can be viewed in the dashboard using ZenML Pro. Sign up for a free trial at https://www.zenml.io/pro/
+Using cached version of step data_ingestion_step.
+Using cached version of step handle_missing_values_step.
+Using cached version of step feature_engineering_step.
+Using cached version of step outlier_detection_step.
+Using cached version of step data_splitter_step.
+Step model_building_step has started.
+Categorical columns: []
+Numerical columns: ['Order', 'PID', 'MS SubClass', 'Lot Frontage', 'Lot Area', 'Overall Qual', 'Overall Cond', 'Year Built', 'Year Remod/Add', 'Mas Vnr Area', 'BsmtFin SF 1', 'BsmtFin SF 2', 'Bsmt Unf SF', 'Total Bsmt SF', '1st Flr SF', '2nd Flr SF', 'Low Qual Fin SF', 'Gr Liv Area', 'Bsmt Full Bath', 'Bsmt Half Bath', 'Full Bath', 'Half Bath', 'Bedroom AbvGr', 'Kitchen AbvGr', 'TotRms AbvGrd', 'Fireplaces', 'Garage Yr Blt', 'Garage Cars', 'Garage Area', 'Wood Deck SF', 'Open Porch SF', 'Enclosed Porch', '3Ssn Porch', 'Screen Porch', 'Pool Area', 'Misc Val', 'Mo Sold', 'Yr Sold']
+Building and training the Linear Regression model.
+2024/11/11 00:42:22 WARNING mlflow.utils.autologging_utils: MLflow autologging encountered a warning: "/opt/anaconda3/lib/python3.12/site-packages/mlflow/types/utils.py:407: UserWarning: Hint: Inferred schema contains integer column(s). Integer columns in Python cannot represent missing values. If your input data contains missing values at inference time, it will be encoded as floats and will cause a schema enforcement error. The best way to avoid this problem is to infer the model schema based on a realistic data sample (training dataset) that includes missing values. Alternatively, you can declare integer columns as doubles (float64) whenever these columns may have missing values. See `Handling Integers With Missing Values <https://www.mlflow.org/docs/latest/models.html#handling-integers-with-missing-values>`_ for more details."
+2024/11/11 00:42:22 WARNING mlflow.utils.autologging_utils: MLflow autologging encountered a warning: "/opt/anaconda3/lib/python3.12/site-packages/mlflow/types/utils.py:407: UserWarning: Hint: Inferred schema contains integer column(s). Integer columns in Python cannot represent missing values. If your input data contains missing values at inference time, it will be encoded as floats and will cause a schema enforcement error. The best way to avoid this problem is to infer the model schema based on a realistic data sample (training dataset) that includes missing values. Alternatively, you can declare integer columns as doubles (float64) whenever these columns may have missing values. See `Handling Integers With Missing Values <https://www.mlflow.org/docs/latest/models.html#handling-integers-with-missing-values>`_ for more details."
+Model training completed.
+Model expects the following columns: ['Order', 'PID', 'MS SubClass', 'Lot Frontage', 'Lot Area', 'Overall Qual', 'Overall Cond', 'Year Built', 'Year Remod/Add', 'Mas Vnr Area', 'BsmtFin SF 1', 'BsmtFin SF 2', 'Bsmt Unf SF', 'Total Bsmt SF', '1st Flr SF', '2nd Flr SF', 'Low Qual Fin SF', 'Gr Liv Area', 'Bsmt Full Bath', 'Bsmt Half Bath', 'Full Bath', 'Half Bath', 'Bedroom AbvGr', 'Kitchen AbvGr', 'TotRms AbvGrd', 'Fireplaces', 'Garage Yr Blt', 'Garage Cars', 'Garage Area', 'Wood Deck SF', 'Open Porch SF', 'Enclosed Porch', '3Ssn Porch', 'Screen Porch', 'Pool Area', 'Misc Val', 'Mo Sold', 'Yr Sold']
+/opt/anaconda3/lib/python3.12/site-packages/zenml/integrations/mlflow/experiment_trackers/mlflow_experiment_tracker.py:258: FutureWarning: ``mlflow.gluon.autolog`` is deprecated since 2.5.0. This method will be removed in a future release.
+  module.autolog(disable=True)
+Step model_building_step has finished in 12.696s.
+Step model_evaluator_step has started.
+Applying the same preprocessing to the test data.
+Evaluating the model using the selected strategy.
+Predicting using the trained model.
+Calculating evaluation metrics.
+Model Evaluation Metrics: {'Mean Squared Error': 0.010942367022909556, 'R-Squared': 0.9221139768594211}
+Step model_evaluator_step has finished in 3.803s.
+Pipeline run has finished in 17.841s.
+
+MLflow Tracking URI: file:/Users/ankanmazumdar/Library/Application Support/zenml/local_stores/52bad07c-54cc-4ee6-b969-e7904b2144a5/mlruns
+To start MLflow UI, run:
+mlflow ui --backend-store-uri 'file:/Users/ankanmazumdar/Library/Application Support/zenml/local_stores/52bad07c-54cc-4ee6-b969-e7904b2144a5/mlruns'
+
+ZenML Dashboard:
+1. First run: zenml up
+2. Then visit: http://127.0.0.1:8237
+3. Default username is 'default' (no password needed)
+
+Pipeline Run ID: 4bbd1876-1cc8-4416-b8ed-51ba96bf2cee
+Status: completed
+Start Time: 2024-11-11 06:42:16.597017
+
+```
+
+### Example Output:
+```bash
+Using existing zip file: data/AmesHousing.csv.zip
+Pipeline execution completed
+Initiating a new run for the pipeline: ml_pipeline.
+Using user: default
+Using stack: mlflow_stack
+  artifact_store: local_store
+  experiment_tracker: mlflow
+  orchestrator: local_orchestrator
+Dashboard URL for Pipeline Run: http://127.0.0.1:8237/runs/4bbd1876-1cc8-4416-b8ed-51ba96bf2cee
+
+[... Model Training Output ...]
+
+Model Evaluation Metrics: {
+    'Mean Squared Error': 0.010942367022909556, 
+    'R-Squared': 0.9221139768594211
+}
+
+Pipeline run has finished in 17.841s.
+```
+
+## Accessing the Dashboards
+
+### MLflow Dashboard
+1. Start MLflow UI:
+```bash
+mlflow ui --backend-store-uri 'file:/path/to/mlruns'
+```
+2. Visit: http://127.0.0.1:5000
+
+### ZenML Dashboard
+1. Ensure ZenML server is running
+2. Visit: http://127.0.0.1:8237
+3. Login:
+   - Username: `default`
+   - Password: (leave empty)
+
+## Pipeline Steps
+1. Data Ingestion
+2. Missing Value Handling
+3. Feature Engineering
+4. Outlier Detection
+5. Data Splitting
+6. Model Building
+7. Model Evaluation
+
+## Performance Metrics
+- Mean Squared Error: 0.0109
+- R-Squared Score: 0.9221 (92.21% variance explained)
+
+## Notes
+- The pipeline uses caching for efficiency
+- Model artifacts are tracked using MLflow
+- Pipeline orchestration is handled by ZenML
+- The model achieves 92.21% accuracy on the test set
+
+## Troubleshooting
+If you encounter issues:
+1. Ensure all dependencies are installed
+2. For Mac users, set the environment variable
+3. Check ZenML server status with `zenml status`
+4. Verify MLflow tracking URI is correct
+
+## Additional Commands
+```bash
+# Check ZenML status
+zenml status
+
+# List all pipelines
+zenml pipeline list
+
+# List all runs
+zenml pipeline runs list
+
+# Stop ZenML server
+zenml down
+```
+
+For more information, visit:
+- [ZenML Documentation](https://docs.zenml.io)
+- [MLflow Documentation](https://mlflow.org/docs/latest/index.html)
+```
+
   ![image](https://github.com/user-attachments/assets/a28156c0-7703-40a7-b0b6-a4acde54b54d)
 
   ![image](https://github.com/user-attachments/assets/c301c0bf-d337-42aa-a16e-aa36b836a504)
@@ -53,7 +415,6 @@ A production-grade house price prediction system implementing MLOps principles a
 <img width="1406" alt="Pipeline Overview" src="https://github.com/user-attachments/assets/197b46e0-74e1-43cb-8e8e-52c6bcd16f61">
 
 ## Architecture
-![MLOps Architecture](https://github.com/user-attachments/assets/fd9e9c9c-49d3-47c9-ae42-31b2a8109b71)
 
 Based on the provided code, here's the architectural overview of the MLOps project:
 
@@ -598,366 +959,6 @@ This project will be structured as follows:
 
 ---
 
-## How to Run the Project
-### I will add further screenshots how the output looks post execution
-
-1. **Clone the Repository**:
-   ```bash
-   git clone <repo-link>
-   ```
-2. **Install Dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. **ZenML and MLflow Setup Guide
-
-```markdown
-
-
-This guide provides step-by-step instructions for setting up ZenML with MLflow integration.
-
-## Table of Contents
-- [Installation](#installation)
-- [Basic Setup](#basic-setup)
-- [Component Registration](#component-registration)
-- [Stack Configuration](#stack-configuration)
-- [Verification](#verification)
-- [Troubleshooting](#troubleshooting)
-- [Best Practices](#best-practices)
-- [Advanced Configuration](#advanced-configuration)
-- [Clean Up](#clean-up)
-```
-## Installation
-
-```bash
-# Install required packages
-pip install zenml
-pip install mlflow>=2.1.1
-```
-
-## Basic Setup
-
-Initialize ZenML repository:
-```bash
-zenml init
-```
-
-Check current environment:
-```bash
-# List all components to see what's already registered
-zenml artifact-store list
-zenml orchestrator list
-zenml experiment-tracker list
-zenml stack list
-```
-
-## Component Registration
-
-Register required components:
-```bash
-# Register local artifact store
-zenml artifact-store register local_store --flavor=local
-
-# Register local orchestrator
-zenml orchestrator register local_orchestrator --flavor=local
-
-# Register MLflow experiment tracker
-zenml experiment-tracker register mlflow --flavor=mlflow
-```
-
-## Stack Configuration
-
-Create and set up MLflow stack:
-```bash
-# Register the stack with components
-zenml stack register mlflow_stack \
-    -a local_store \
-    -o local_orchestrator \
-    -e mlflow
-
-# Set as active stack
-zenml stack set mlflow_stack
-```
-
-## Verification
-
-Verify the setup:
-```bash
-# Check registered stacks
-zenml stack list
-
-# Start MLflow UI (optional)
-zenml up
-```
-
-## Troubleshooting
-
-### Component Already Exists
-```bash
-# Delete existing components if needed
-zenml artifact-store delete local_store
-zenml orchestrator delete local_orchestrator
-zenml experiment-tracker delete mlflow
-```
-
-### Check Component Details
-```bash
-zenml artifact-store describe local_store
-zenml orchestrator describe local_orchestrator
-zenml experiment-tracker describe mlflow
-```
-
-### Stack Issues
-```bash
-# Check stack configuration
-zenml stack describe mlflow_stack
-
-# Delete and recreate if needed
-zenml stack delete mlflow_stack
-```
-
-## Best Practices
-
-1. **Before Starting:**
-   - Clean up any existing configurations if starting fresh
-   - Check all required packages are installed
-   - Verify you're in the correct directory
-
-2. **During Setup:**
-   - Register components one at a time
-   - Verify each component after registration
-   - Use descriptive names for components and stacks
-
-3. **After Setup:**
-   - Verify stack activation
-   - Test MLflow tracking
-   - Check MLflow UI accessibility
-
-## Advanced Configuration
-
-### Custom MLflow Configuration
-```bash
-# Configure MLflow with specific tracking URI
-zenml experiment-tracker register mlflow \
-    --flavor=mlflow \
-    --tracking_uri=sqlite:///mlflow.db
-```
-
-### Custom Artifact Store Path
-```bash
-# Configure local artifact store with specific path
-zenml artifact-store register local_store \
-    --flavor=local \
-    --path=/custom/path/to/artifacts
-```
-
-## Clean Up
-
-Remove all configurations:
-```bash
-# Delete stack and components
-zenml stack delete mlflow_stack
-zenml artifact-store delete local_store
-zenml orchestrator delete local_orchestrator
-zenml experiment-tracker delete mlflow
-
-# Clean MLflow artifacts
-rm -rf mlruns/
-rm mlflow.db
-```
-
-## Common Issues and Solutions
-
-1. **Component Registration Fails:**
-   - Ensure you have the correct permissions
-   - Check if component already exists
-   - Verify the flavor is supported
-
-2. **Stack Registration Fails:**
-   - Ensure all components are registered first
-   - Check component names are correct
-   - Verify all required components are specified
-
-3. **MLflow Integration Issues:**
-   - Ensure MLflow is properly installed
-   - Check if MLflow server is running
-   - Verify artifact store is properly configured
-
-
-```markdown
-# House Price Prediction Pipeline
-
-This project implements a machine learning pipeline for predicting house prices using ZenML and MLflow.
-
-## Setup and Installation
-
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd <repository-name>
-```
-
-2. Install dependencies:
-```bash
-pip install "zenml[server]" mlflow scikit-learn pandas numpy
-```
-
-3. Set up environment (for Mac users):
-```bash
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-```
-
-## Running the Pipeline
-
-1. Initialize ZenML:
-```bash
-zenml init
-```
-
-2. Start the ZenML server:
-```bash
-zenml up
-```
-
-3. Run the pipeline:
-```bash
-python run_pipeline.py
-
-(base) ankanmazumdar@Ankans-Air Top-Notch-Data-Science-Project-Price-Prediction-Using-Core-ML-and-MLOps-Principles-main % python run_pipeline.py
-Using existing zip file: data/AmesHousing.csv.zip
-Pipeline execution completed
-Initiating a new run for the pipeline: ml_pipeline.
-Using user: default
-Using stack: mlflow_stack
-  artifact_store: local_store
-  experiment_tracker: mlflow
-  orchestrator: local_orchestrator
-Dashboard URL for Pipeline Run: http://127.0.0.1:8237/runs/4bbd1876-1cc8-4416-b8ed-51ba96bf2cee
-Created new model version 11 for model prices_predictor.
-Models can be viewed in the dashboard using ZenML Pro. Sign up for a free trial at https://www.zenml.io/pro/
-Using cached version of step data_ingestion_step.
-Using cached version of step handle_missing_values_step.
-Using cached version of step feature_engineering_step.
-Using cached version of step outlier_detection_step.
-Using cached version of step data_splitter_step.
-Step model_building_step has started.
-Categorical columns: []
-Numerical columns: ['Order', 'PID', 'MS SubClass', 'Lot Frontage', 'Lot Area', 'Overall Qual', 'Overall Cond', 'Year Built', 'Year Remod/Add', 'Mas Vnr Area', 'BsmtFin SF 1', 'BsmtFin SF 2', 'Bsmt Unf SF', 'Total Bsmt SF', '1st Flr SF', '2nd Flr SF', 'Low Qual Fin SF', 'Gr Liv Area', 'Bsmt Full Bath', 'Bsmt Half Bath', 'Full Bath', 'Half Bath', 'Bedroom AbvGr', 'Kitchen AbvGr', 'TotRms AbvGrd', 'Fireplaces', 'Garage Yr Blt', 'Garage Cars', 'Garage Area', 'Wood Deck SF', 'Open Porch SF', 'Enclosed Porch', '3Ssn Porch', 'Screen Porch', 'Pool Area', 'Misc Val', 'Mo Sold', 'Yr Sold']
-Building and training the Linear Regression model.
-2024/11/11 00:42:22 WARNING mlflow.utils.autologging_utils: MLflow autologging encountered a warning: "/opt/anaconda3/lib/python3.12/site-packages/mlflow/types/utils.py:407: UserWarning: Hint: Inferred schema contains integer column(s). Integer columns in Python cannot represent missing values. If your input data contains missing values at inference time, it will be encoded as floats and will cause a schema enforcement error. The best way to avoid this problem is to infer the model schema based on a realistic data sample (training dataset) that includes missing values. Alternatively, you can declare integer columns as doubles (float64) whenever these columns may have missing values. See `Handling Integers With Missing Values <https://www.mlflow.org/docs/latest/models.html#handling-integers-with-missing-values>`_ for more details."
-2024/11/11 00:42:22 WARNING mlflow.utils.autologging_utils: MLflow autologging encountered a warning: "/opt/anaconda3/lib/python3.12/site-packages/mlflow/types/utils.py:407: UserWarning: Hint: Inferred schema contains integer column(s). Integer columns in Python cannot represent missing values. If your input data contains missing values at inference time, it will be encoded as floats and will cause a schema enforcement error. The best way to avoid this problem is to infer the model schema based on a realistic data sample (training dataset) that includes missing values. Alternatively, you can declare integer columns as doubles (float64) whenever these columns may have missing values. See `Handling Integers With Missing Values <https://www.mlflow.org/docs/latest/models.html#handling-integers-with-missing-values>`_ for more details."
-Model training completed.
-Model expects the following columns: ['Order', 'PID', 'MS SubClass', 'Lot Frontage', 'Lot Area', 'Overall Qual', 'Overall Cond', 'Year Built', 'Year Remod/Add', 'Mas Vnr Area', 'BsmtFin SF 1', 'BsmtFin SF 2', 'Bsmt Unf SF', 'Total Bsmt SF', '1st Flr SF', '2nd Flr SF', 'Low Qual Fin SF', 'Gr Liv Area', 'Bsmt Full Bath', 'Bsmt Half Bath', 'Full Bath', 'Half Bath', 'Bedroom AbvGr', 'Kitchen AbvGr', 'TotRms AbvGrd', 'Fireplaces', 'Garage Yr Blt', 'Garage Cars', 'Garage Area', 'Wood Deck SF', 'Open Porch SF', 'Enclosed Porch', '3Ssn Porch', 'Screen Porch', 'Pool Area', 'Misc Val', 'Mo Sold', 'Yr Sold']
-/opt/anaconda3/lib/python3.12/site-packages/zenml/integrations/mlflow/experiment_trackers/mlflow_experiment_tracker.py:258: FutureWarning: ``mlflow.gluon.autolog`` is deprecated since 2.5.0. This method will be removed in a future release.
-  module.autolog(disable=True)
-Step model_building_step has finished in 12.696s.
-Step model_evaluator_step has started.
-Applying the same preprocessing to the test data.
-Evaluating the model using the selected strategy.
-Predicting using the trained model.
-Calculating evaluation metrics.
-Model Evaluation Metrics: {'Mean Squared Error': 0.010942367022909556, 'R-Squared': 0.9221139768594211}
-Step model_evaluator_step has finished in 3.803s.
-Pipeline run has finished in 17.841s.
-
-MLflow Tracking URI: file:/Users/ankanmazumdar/Library/Application Support/zenml/local_stores/52bad07c-54cc-4ee6-b969-e7904b2144a5/mlruns
-To start MLflow UI, run:
-mlflow ui --backend-store-uri 'file:/Users/ankanmazumdar/Library/Application Support/zenml/local_stores/52bad07c-54cc-4ee6-b969-e7904b2144a5/mlruns'
-
-ZenML Dashboard:
-1. First run: zenml up
-2. Then visit: http://127.0.0.1:8237
-3. Default username is 'default' (no password needed)
-
-Pipeline Run ID: 4bbd1876-1cc8-4416-b8ed-51ba96bf2cee
-Status: completed
-Start Time: 2024-11-11 06:42:16.597017
-
-```
-
-### Example Output:
-```bash
-Using existing zip file: data/AmesHousing.csv.zip
-Pipeline execution completed
-Initiating a new run for the pipeline: ml_pipeline.
-Using user: default
-Using stack: mlflow_stack
-  artifact_store: local_store
-  experiment_tracker: mlflow
-  orchestrator: local_orchestrator
-Dashboard URL for Pipeline Run: http://127.0.0.1:8237/runs/4bbd1876-1cc8-4416-b8ed-51ba96bf2cee
-
-[... Model Training Output ...]
-
-Model Evaluation Metrics: {
-    'Mean Squared Error': 0.010942367022909556, 
-    'R-Squared': 0.9221139768594211
-}
-
-Pipeline run has finished in 17.841s.
-```
-
-## Accessing the Dashboards
-
-### MLflow Dashboard
-1. Start MLflow UI:
-```bash
-mlflow ui --backend-store-uri 'file:/path/to/mlruns'
-```
-2. Visit: http://127.0.0.1:5000
-
-### ZenML Dashboard
-1. Ensure ZenML server is running
-2. Visit: http://127.0.0.1:8237
-3. Login:
-   - Username: `default`
-   - Password: (leave empty)
-
-## Pipeline Steps
-1. Data Ingestion
-2. Missing Value Handling
-3. Feature Engineering
-4. Outlier Detection
-5. Data Splitting
-6. Model Building
-7. Model Evaluation
-
-## Performance Metrics
-- Mean Squared Error: 0.0109
-- R-Squared Score: 0.9221 (92.21% variance explained)
-
-## Notes
-- The pipeline uses caching for efficiency
-- Model artifacts are tracked using MLflow
-- Pipeline orchestration is handled by ZenML
-- The model achieves 92.21% accuracy on the test set
-
-## Troubleshooting
-If you encounter issues:
-1. Ensure all dependencies are installed
-2. For Mac users, set the environment variable
-3. Check ZenML server status with `zenml status`
-4. Verify MLflow tracking URI is correct
-
-## Additional Commands
-```bash
-# Check ZenML status
-zenml status
-
-# List all pipelines
-zenml pipeline list
-
-# List all runs
-zenml pipeline runs list
-
-# Stop ZenML server
-zenml down
-```
-
-For more information, visit:
-- [ZenML Documentation](https://docs.zenml.io)
-- [MLflow Documentation](https://mlflow.org/docs/latest/index.html)
-```
 
 
 
