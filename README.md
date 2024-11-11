@@ -451,3 +451,10 @@ rm mlflow.db
 7. **Track Experiments and Deploy**:
    MLFlow is used for managing experiments and deploying the trained model into production.
 
+
+  ![image](https://github.com/user-attachments/assets/a28156c0-7703-40a7-b0b6-a4acde54b54d)
+
+  ![image](https://github.com/user-attachments/assets/c301c0bf-d337-42aa-a16e-aa36b836a504)
+
+ 
+
