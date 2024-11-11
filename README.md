@@ -28,10 +28,7 @@
 
   <img width="1413" alt="Screenshot 2024-11-11 at 12 20 55 AM" src="https://github.com/user-attachments/assets/d9fd3692-9a31-43f4-8908-b1b6a04eb886">
 
- 
 
-
-I'll help reorganize the README while maintaining all the valuable content and images. Here's a more structured version:
 
 ```markdown
 # House Price Prediction with MLOps
