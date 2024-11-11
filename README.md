@@ -32,10 +32,10 @@
 
 ```markdown
 # House Price Prediction with MLOps
-
+```
 ![ZenML Dashboard](https://github.com/user-attachments/assets/a28156c0-7703-40a7-b0b6-a4acde54b54d)
 ![MLflow Integration](https://github.com/user-attachments/assets/c301c0bf-d337-42aa-a16e-aa36b836a504)
-
+```
 ## Table of Contents
 1. [Project Overview](#project-overview)
 2. [Architecture](#architecture)
@@ -51,6 +51,7 @@
 A production-grade house price prediction system implementing MLOps principles and best practices. The project achieves 92.21% accuracy using a combination of robust data processing, model training, and deployment pipelines.
 
 ### Dashboard Views
+```
 <img width="812" alt="Model Training" src="https://github.com/user-attachments/assets/8e366fd8-297e-41ae-932e-8edb4f39ca53">
 <img width="1406" alt="Pipeline Overview" src="https://github.com/user-attachments/assets/197b46e0-74e1-43cb-8e8e-52c6bcd16f61">
 
