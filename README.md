@@ -469,20 +469,9 @@ rm mlflow.db
    - Check if MLflow server is running
    - Verify artifact store is properly configured
 
-4. **Run Data Ingestion**:
-   ```bash
-   python ingest_data.py
-   ```
-5. **Run EDA**:
-   ```bash
-   jupyter notebook eda.ipynb
-   ```
-6. **Train and Evaluate the Model**:
-   ```bash
-   python train_model.py
-   ```
+
 7. **Track Experiments and Deploy**:
-   MLFlow is used for managing experiments and deploying the trained model into production.
+   ZenML and MLFlow is used for managing experiments and deploying the trained model into production.
 
 
 
