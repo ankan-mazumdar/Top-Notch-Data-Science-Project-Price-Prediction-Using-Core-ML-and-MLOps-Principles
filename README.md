@@ -293,7 +293,7 @@ zenml down
 For more information, visit:
 - [ZenML Documentation](https://docs.zenml.io)
 - [MLflow Documentation](https://mlflow.org/docs/latest/index.html)
-```
+
 
   ![image](https://github.com/user-attachments/assets/a28156c0-7703-40a7-b0b6-a4acde54b54d)
 
